@@ -1,0 +1,20 @@
+# Incident-time workflow snapshot; not an active GitHub Actions workflow.
+name: production-publish
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  id-token: write
+jobs:
+  publish:
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
+      - run: node selector.mjs "${{ github.event.pull_request.number }}"
+      - run: ./publish.sh downloaded/forecast.tar.gz

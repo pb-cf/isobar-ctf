@@ -1,0 +1,8 @@
+{
+  "bucket": "isobar-prod-reports",
+  "key": "reports/2026-10-28/forecast.sealed",
+  "latest": {
+    "isDeleteMarker": true,
+    "versionId": "v-c81c4b58b97e28eede441df5"
+  }
+}
